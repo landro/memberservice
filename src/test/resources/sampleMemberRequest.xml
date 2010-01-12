@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<ms:MemberDetailsRequest xmlns:ms="http://open.bekk.no/memberservice">
+	<ms:id>SAMPLE</ms:id>
+</ms:MemberDetailsRequest>

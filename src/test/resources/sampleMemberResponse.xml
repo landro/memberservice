@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ms:MemberDetailsResponse xmlns:ms="http://open.bekk.no/memberservice">
+	<ms:memberdetail>
+		<ms:name>testname</ms:name>
+		<ms:city>testcity</ms:city>
+		<ms:phone>testphone</ms:phone>
+		<ms:state>teststate</ms:state>
+	</ms:memberdetail>
+</ms:MemberDetailsResponse>

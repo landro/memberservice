@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://open.bekk.no/memberservice" xmlns:tns="http://open.bekk.no/memberservice" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="MemberDetailsRequest" type="tns:MemberDetailsRequest"/>
+
+  <xs:element name="MemberDetailsResponse" type="tns:MemberDetailsResponse"/>
+
+  <xs:complexType name="MemberDetailsRequest">
+    <xs:sequence>
+      <xs:element name="id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MemberDetailsResponse">
+    <xs:sequence>
+      <xs:element name="memberdetail" type="tns:MemberDetailType" form="qualified"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MemberDetailType">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string" form="qualified"/>
+      <xs:element name="phone" type="xs:string" form="qualified"/>
+      <xs:element name="city" type="xs:string" form="qualified"/>
+      <xs:element name="state" type="xs:string" form="qualified"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
