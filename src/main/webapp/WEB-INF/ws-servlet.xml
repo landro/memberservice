@@ -41,7 +41,6 @@
 				<entry key="MemberDetails" value="http://open.bekk.no/memberservice/MemberDetails" />
 			</map>
 		</property>
-
 	</bean>
 
 </beans>

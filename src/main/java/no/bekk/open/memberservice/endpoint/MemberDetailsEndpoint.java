@@ -9,8 +9,6 @@ import org.springframework.ws.server.endpoint.AbstractMarshallingPayloadEndpoint
 
 public class MemberDetailsEndpoint extends
 		AbstractMarshallingPayloadEndpoint {
-	
-	public static final String NAMESPACE = "http://open.bekk.no";
 
 	private MemberManager memberManager;
 
