@@ -76,14 +76,6 @@
 	</dependencies>
 	<build>
 		<finalName>memberservice</finalName>
-		<!--
-			<testResources> <testResource>
-			<directory>src/main/webapp/WEB-INF</directory> </testResource>
-			</testResources> <resources> <resource>
-			<directory>target/generated-resources/main/xsd</directory> <includes>
-			<include>**/*.xsd</include> </includes> </resource> <resource>
-			<directory>src/main/resources</directory> </resource> </resources>
-		-->
 		<plugins>
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
