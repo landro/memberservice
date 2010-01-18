@@ -8,19 +8,20 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
 
-	<bean id="payloadMapping"
-		class="org.springframework.ws.server.endpoint.mapping.PayloadRootQNameEndpointMapping">
-		<property name="endpointMap">
-			<map>
-				<entry key="{http://open.bekk.no/memberservice}MemberDetailsRequest"
-					value-ref="memberDetailsEndpoint" />
-			</map>
-		</property>
+	<bean class="no.bekk.open.memberservice.endpoint.MemberDetailsEndpoint">
+		<property name="memberManager" ref="memberManager" />
 	</bean>
 
-	<bean id="memberDetailsEndpoint"
-		class="no.bekk.open.memberservice.endpoint.MemberDetailsEndpoint">
-		<property name="memberManager" ref="memberManager" />
+	<bean
+		class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping">
+		<description>An endpoint mapping strategy that looks for @Endpoint and
+			@PayloadRoot annotations.</description>
+	</bean>
+
+	<bean
+		class="org.springframework.ws.server.endpoint.adapter.MarshallingMethodEndpointAdapter">
+		<description>Enables the MessageDispatchServlet to invoke methods
+			requiring OXM marshalling.</description>
 		<property name="marshaller" ref="jaxb2Marshaller" />
 		<property name="unmarshaller" ref="jaxb2Marshaller" />
 	</bean>

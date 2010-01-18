@@ -21,7 +21,7 @@ public class MemberDetailsEndpointTest {
 		MemberDetailsEndpoint memberDetailsEndpoint = new MemberDetailsEndpoint();
 		memberDetailsEndpoint.setMemberManager(memberManagerMock);
 		replay(memberManagerMock);
-		memberDetailsEndpoint.invokeInternal(new MemberDetailsRequest("testid"));
+		memberDetailsEndpoint.memberDetails(new MemberDetailsRequest("testid"));
 		verify(memberManagerMock);
 	}
 
