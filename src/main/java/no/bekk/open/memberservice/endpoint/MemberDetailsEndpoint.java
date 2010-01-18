@@ -14,7 +14,7 @@ public class MemberDetailsEndpoint {
 
 	private MemberManager memberManager;
 
-	@PayloadRoot(localPart="MemberDetailsRequest", namespace=MemberDetailsNamespace.NAMESPACE)
+	@PayloadRoot(localPart = "MemberDetailsRequest", namespace = MemberDetailsNamespace.NAMESPACE)
 	public MemberDetailsResponse memberDetails(MemberDetailsRequest request) {
 		MemberDetail memberDetail = memberManager.getMemberDetails(request
 				.getId());
