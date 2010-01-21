@@ -16,10 +16,9 @@ import org.junit.Test;
 public class MemberDetailsControllerTest {
 
 	@Test
-	public void testInvokeInternalObject() throws Exception {
+	public void testMemberDetails() throws Exception {
 		MemberManager memberManagerMock = createMock(MemberManager.class);
-		MemberDetail memberDetail = new MemberDetail("testname", "testphone",
-				"testcity", "teststate");
+		MemberDetail memberDetail = new MemberDetail();
 		expect(memberManagerMock.getMemberDetails(eq("testid"))).andReturn(
 				memberDetail);
 		MemberDetailsController controller = new MemberDetailsController();

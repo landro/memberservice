@@ -20,6 +20,7 @@
 				<value>no.bekk.open.memberservice.message.MemberDetail</value>
 			</list>
 		</property>
+		<property name="schema" value="classpath:/memberservice-common.xsd"/>
 	</bean>
 
 </beans>

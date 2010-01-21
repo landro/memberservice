@@ -20,7 +20,8 @@ public class MemberDetailsController {
 	public MemberDetailsResponse memberDetails(
 			@PathVariable(value = "id") String id) {
 		MemberDetail detail = memberManager.getMemberDetails(id);
-		MemberDetailsResponse response = new MemberDetailsResponse(detail);
+		MemberDetailsResponse response = new MemberDetailsResponse();
+		response.setMemberDetail(detail);
 		return response;
 	}
 

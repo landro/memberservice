@@ -1,28 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<xs:schema version="1.0" targetNamespace="http://open.bekk.no/memberservice" xmlns:tns="http://open.bekk.no/memberservice" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema version="1.0" targetNamespace="http://open.bekk.no/memberservice" xmlns:tns="http://open.bekk.no/memberservice"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:element name="MemberDetailsRequest" type="tns:MemberDetailsRequest"/>
+  <xs:element name="MemberDetailsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="id" form="qualified">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:pattern value="[a-z0-9]{0,8}" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 
-  <xs:element name="MemberDetailsResponse" type="tns:MemberDetailsResponse"/>
+  <xs:element name="MemberDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="MemberDetail" type="tns:MemberDetail" form="qualified" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 
-  <xs:complexType name="MemberDetailsRequest">
+  <xs:complexType name="MemberDetail">
     <xs:sequence>
-      <xs:element name="id" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="MemberDetailsResponse">
-    <xs:sequence>
-      <xs:element name="memberdetail" type="tns:MemberDetailType" form="qualified"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="MemberDetailType">
-    <xs:sequence>
-      <xs:element name="name" type="xs:string" form="qualified"/>
-      <xs:element name="phone" type="xs:string" form="qualified"/>
-      <xs:element name="city" type="xs:string" form="qualified"/>
-      <xs:element name="state" type="xs:string" form="qualified"/>
+      <xs:element name="name" type="xs:string" form="qualified" />
+      <xs:element name="phone" type="xs:string" form="qualified" />
+      <xs:element name="city" type="xs:string" form="qualified" />
+      <xs:element name="state" form="qualified">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z]{2}" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

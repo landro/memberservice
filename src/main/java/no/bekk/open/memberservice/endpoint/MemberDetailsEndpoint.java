@@ -1,7 +1,6 @@
 package no.bekk.open.memberservice.endpoint;
 
 import no.bekk.open.memberservice.message.MemberDetail;
-import no.bekk.open.memberservice.message.MemberDetailsNamespace;
 import no.bekk.open.memberservice.message.MemberDetailsRequest;
 import no.bekk.open.memberservice.message.MemberDetailsResponse;
 import no.bekk.open.memberservice.service.MemberManager;
@@ -14,11 +13,12 @@ public class MemberDetailsEndpoint {
 
 	private MemberManager memberManager;
 
-	@PayloadRoot(localPart = "MemberDetailsRequest", namespace = MemberDetailsNamespace.NAMESPACE)
+	@PayloadRoot(localPart = "MemberDetailsRequest", namespace = "http://open.bekk.no/memberservice")
 	public MemberDetailsResponse memberDetails(MemberDetailsRequest request) {
-		MemberDetail memberDetail = memberManager.getMemberDetails(request
+		MemberDetail detail = memberManager.getMemberDetails(request
 				.getId());
-		MemberDetailsResponse response = new MemberDetailsResponse(memberDetail);
+		MemberDetailsResponse response = new MemberDetailsResponse();
+		response.setMemberDetail(detail);
 		return response;
 	}
 

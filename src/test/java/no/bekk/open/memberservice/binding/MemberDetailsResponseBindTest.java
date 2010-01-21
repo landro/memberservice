@@ -18,10 +18,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.oxm.jaxb.JaxbMarshallingFailureException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-public class MemberDetailsResponseBindTest extends AbstractApplicationContextAwareTest {
+public class MemberDetailsResponseBindTest extends
+		AbstractApplicationContextAwareTest {
 
 	@Autowired
 	Jaxb2Marshaller jaxb2Marshaller;
@@ -37,14 +39,32 @@ public class MemberDetailsResponseBindTest extends AbstractApplicationContextAwa
 
 	@Test
 	public void testMarshallingToMemberDetailsRequest() throws Exception {
-		MemberDetail memberDetail = new MemberDetail("testname", "testphone",
-				"testcity", "teststate");
-		MemberDetailsResponse response = new MemberDetailsResponse(memberDetail);
+		MemberDetail memberDetail = new MemberDetail();
+		memberDetail.setName("testname");
+		memberDetail.setPhone("testphone");
+		memberDetail.setCity("New York");
+		memberDetail.setState("NY");
+		MemberDetailsResponse response = new MemberDetailsResponse();
+		response.setMemberDetail(memberDetail);
 		StringWriter writer = new StringWriter();
 		Result result = new StreamResult(writer);
 		jaxb2Marshaller.marshal(response, result);
 		assertNotNull(writer.toString());
-		assertTrue(writer.toString().contains("memberdetail"));
+		assertTrue(writer.toString().contains("MemberDetail"));
+	}
+
+	@Test(expected = JaxbMarshallingFailureException.class)
+	public void testMarshallingInvalidToMemberDetailsRequest() throws Exception {
+		MemberDetail memberDetail = new MemberDetail();
+		memberDetail.setName("testname");
+		memberDetail.setPhone("testphone");
+		memberDetail.setCity("New York");
+		memberDetail.setState("Invalid state code");
+		MemberDetailsResponse response = new MemberDetailsResponse();
+		response.setMemberDetail(memberDetail);
+		StringWriter writer = new StringWriter();
+		Result result = new StreamResult(writer);
+		jaxb2Marshaller.marshal(response, result);
 	}
 
 }

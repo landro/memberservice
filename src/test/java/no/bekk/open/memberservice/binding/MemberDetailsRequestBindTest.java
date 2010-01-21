@@ -17,6 +17,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.oxm.jaxb.JaxbMarshallingFailureException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -37,11 +38,21 @@ public class MemberDetailsRequestBindTest extends AbstractApplicationContextAwar
 	@Test
 	public void testMarshallingToMemberDetailsRequest() throws Exception {
 		MemberDetailsRequest memberDetailsRequest = new MemberDetailsRequest();
-		memberDetailsRequest.setId("SAMPLE");
+		memberDetailsRequest.setId("sample");
 		StringWriter writer = new StringWriter();
 		Result result = new StreamResult(writer);
 		jaxb2Marshaller.marshal(memberDetailsRequest, result);
 		assertTrue(writer.toString().contains("MemberDetailsRequest"));
 	}
 
+	@Test(expected = JaxbMarshallingFailureException.class)
+	public void testMarshallingInvalidToMemberDetailsRequest() throws Exception {
+		MemberDetailsRequest memberDetailsRequest = new MemberDetailsRequest();
+		memberDetailsRequest.setId("Invalid id");
+		StringWriter writer = new StringWriter();
+		Result result = new StreamResult(writer);
+		jaxb2Marshaller.marshal(memberDetailsRequest, result);
+	}
+
+	
 }
